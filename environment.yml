@@ -1,4 +1,4 @@
-name: base
+name: action-clip
 channels:
   - conda-forge
   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main

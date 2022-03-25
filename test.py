@@ -61,6 +61,7 @@ def validate(epoch, val_loader, classes, device, model, fusion_model, config, nu
             similarity = similarity.mean(dim=1, keepdim=False)
             values_1, indices_1 = similarity.topk(1, dim=-1)
             values_5, indices_5 = similarity.topk(5, dim=-1)
+            print(values_5,indices_5)
             num += b
             for i in range(b):
                 if indices_1[i] == class_id[i]:
@@ -88,7 +89,7 @@ def main():
                                args.log_time)
     wandb.init(project=config['network']['type'],
                name='{}_{}_{}_{}'.format(args.log_time, config['network']['type'], config['network']['arch'],
-                                         config['data']['dataset']))
+                                         config['data']['dataset']),settings=wandb.Settings(start_method="fork"))
     print('-' * 80)
     print(' ' * 20, "working dir: {}".format(working_dir))
     print('-' * 80)

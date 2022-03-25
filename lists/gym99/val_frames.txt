@@ -1,0 +1,7 @@
+datasets/gym99/subaction_frames/0LtLS9wROrk_E_002407_002435_A_0003_0005 22 78
+datasets/gym99/subaction_frames/0LtLS9wROrk_E_002407_002435_A_0006_0008 16 91
+datasets/gym99/subaction_frames/0LtLS9wROrk_E_002407_002435_A_0012_0013 9 94
+datasets/gym99/subaction_frames/0LtLS9wROrk_E_002407_002435_A_0015_0017 17 95
+datasets/gym99/subaction_frames/0LtLS9wROrk_E_002407_002435_A_0019_0021 17 79
+datasets/gym99/subaction_frames/0LtLS9wROrk_E_002407_002435_A_0021_0023 16 79
+datasets/gym99/subaction_frames/0LtLS9wROrk_E_002407_002435_A_0023_0028 40 98
