@@ -39,6 +39,32 @@ class ImageCLIP(nn.Module):
     def forward(self,image):
         return self.model.encode_image(image)
 
+def initialize_parameters(model):
+        nn.init.normal_(model.token_embedding.weight, std=0.02)
+        nn.init.normal_(model.positional_embedding, std=0.01)
+
+        proj_std = (model.transformer.width ** -0.5) * ((2 * model.transformer.layers) ** -0.5)
+        attn_std = model.transformer.width ** -0.5
+        fc_std = (2 * model.transformer.width) ** -0.5
+        for block in model.transformer.resblocks:
+            nn.init.normal_(block.attn.in_proj_weight, std=attn_std)
+            nn.init.normal_(block.attn.out_proj.weight, std=proj_std)
+            nn.init.normal_(block.mlp.c_fc.weight, std=fc_std)
+            nn.init.normal_(block.mlp.c_proj.weight, std=proj_std)
+
+
+        proj_std = (model.visual.transformer.width ** -0.5) * ((2 * model.visual.transformer.layers) ** -0.5)
+        attn_std = model.visual.transformer.width ** -0.5
+        fc_std = (2 * model.visual.transformer.width) ** -0.5
+        for block in model.visual.transformer.resblocks:
+            nn.init.normal_(block.attn.in_proj_weight, std=attn_std)
+            nn.init.normal_(block.attn.out_proj.weight, std=proj_std)
+            nn.init.normal_(block.mlp.c_fc.weight, std=fc_std)
+            nn.init.normal_(block.mlp.c_proj.weight, std=proj_std)
+
+        if model.text_projection is not None:
+            nn.init.normal_(model.text_projection, std=model.transformer.width ** -0.5)
+
 def main():
     global args, best_prec1
     global global_step
@@ -140,6 +166,9 @@ def main():
     if config.solver.evaluate:
         prec1 = validate(start_epoch,val_loader, classes, device, model,fusion_model, config,num_text_aug)
         return
+
+    if config['network']['type'] == 'clip_gym99_set_0_initialization':
+        initialize_parameters(model)
 
     for k,v in model.named_parameters():
         print('{}: {}'.format(k, v.requires_grad))
