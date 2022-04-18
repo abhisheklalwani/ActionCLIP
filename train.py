@@ -168,6 +168,7 @@ def main():
         return
 
     if config['network']['type'] == 'clip_gym99_set_0_initialization':
+        print('Re-Initializing Weights')
         initialize_parameters(model)
 
     for k,v in model.named_parameters():
