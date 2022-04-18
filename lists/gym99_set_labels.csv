@@ -2,15 +2,14 @@ id,name
 0,vault
 1,Floor Exercise leap jump hop
 2,Floor Exercise turns
-3,Floor Exercise side salto
-4,Floor Exercise front salto
-5,Floor Exercise back salto
-6,Balance Beams leap jump hop
-7,Balance Beams turns
-8,Balance Beams flight salto
-9,Balance Beams flight handspring
-10,Balance Beams dismounts
-11,Uneven Bars circles
-12,Uneven Bars flight same bar
-13,Uneven Bars transition flight
-14,Uneven Bars dismounts
+3,Floor Exercise front salto
+4,Floor Exercise back salto
+5,Balance Beams leap jump hop
+6,Balance Beams turns
+7,Balance Beams flight salto
+8,Balance Beams flight handspring
+9,Balance Beams dismounts
+10,Uneven Bars circles
+11,Uneven Bars flight same bar
+12,Uneven Bars transition flight
+13,Uneven Bars dismounts
