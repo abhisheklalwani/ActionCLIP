@@ -8,7 +8,7 @@ data:
     seg_length: 1
     batch_size: 16
     workers: 16
-    num_classes: 15
+    num_classes: 14
     image_tmpl: 'img_{:05d}.jpg'
     train_list: 'lists/gym99/train_set_frames.txt'
     val_list: 'lists/gym99/val_set_frames.txt' #

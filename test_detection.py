@@ -45,6 +45,7 @@ def validate(epoch, val_loader, classes, device, model, fusion_model, config, nu
     corr_5 = 0
     recall_count = torch.zeros(config.data.num_classes).to(device)
     total_count = torch.zeros(config.data.num_classes).to(device)
+    all_segments_preds = []
     with torch.no_grad():
         text_inputs = classes.to(device)
         text_features = model.encode_text(text_inputs)
@@ -61,23 +62,21 @@ def validate(epoch, val_loader, classes, device, model, fusion_model, config, nu
             similarity = similarity.view(b, num_text_aug, -1).softmax(dim=-1)
             similarity = similarity.mean(dim=1, keepdim=False)
             values_1, indices_1 = similarity.topk(1, dim=-1)
-            values_5, indices_5 = similarity.topk(5, dim=-1)
+            values_5, indices_5 = similarity.topk(1, dim=-1)
             num += b
             for i in range(b):
-                if indices_1[i] == class_id[i]:
-                    corr_1 += 1
-                    recall_count[indices_1[i]]+=1
-                if class_id[i] in indices_5[i]:
-                    corr_5 += 1
-                total_count[class_id[i]]+=1
-    top1 = float(corr_1) / num * 100
-    top5 = float(corr_5) / num * 100
-    wandb.log({"top1": top1})
-    wandb.log({"top5": top5})
-    print('Recall for every class - ', torch.div(recall_count,total_count))
-    print('Number of examples per class - ',total_count)
-    print('Epoch: [{}/{}]: Top1: {}, Top5: {}'.format(epoch, config.solver.epochs, top1, top5))
-    return top1
+                if indices_1[i].item() != 1 and values_1[i].item() > 0.85: #checking if the confidence of classificaiton is greter than 0.85 and if any action is detected (for 2-label model)
+                    if len(all_segments_preds) > 0:
+                        if all_segments_preds[-1][-2] > iii/29.997: #dividing by FPS to get the starting and the ending timestamp
+                            all_segments_preds[-1][-2] = (iii/29.997)+0.5
+                        else:
+                            all_segments_preds.append([iii/29.997,(iii/29.997)+0.5,indices_1[i].item()])  #code to merge intervals
+                    else:
+                        all_segments_preds.append([iii/29.997,(iii/29.997)+0.5,indices_1[i].item()])
+            
+    print('Epoch: [{}/{}]:'.format(epoch, config.solver.epochs))
+    print(all_segments_preds)
+    return 0
 
 def main():
     global args, best_prec1

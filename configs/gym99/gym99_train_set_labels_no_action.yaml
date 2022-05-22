@@ -8,11 +8,11 @@ data:
     seg_length: 1
     batch_size: 16
     workers: 16
-    num_classes: 14
+    num_classes: 2
     image_tmpl: 'img_{:05d}.jpg'
-    train_list: 'lists/gym99/train_set_frames.txt'
-    val_list: 'lists/gym99/val_set_frames.txt' #
-    label_list: 'lists/gym99_set_labels.csv'
+    train_list: 'lists/gym99/train_set_frames_no_action_2_labels.txt'
+    val_list: 'lists/gym99/val_set_frames_no_action_2_labels.txt' #
+    label_list: 'lists/gym99_set_labels_no_action_2_labels.csv'
     index_bias: 1
     input_size: 224
     randaug:
@@ -25,7 +25,7 @@ network:
     tsm: False
     drop_out: 0.0 
     emb_dropout: 0.0 
-    type: clip_gym99_set_0_initialization
+    type: clip_gym99_set_no_action_2_labels
     sim_header: "Transf"  #Transf   meanP  LSTM Conv_1D Transf_cls
     joint: False
     describe:

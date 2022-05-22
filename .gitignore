@@ -11,3 +11,4 @@ thumb.sdb
 wandb/
 trained_models/
 datasets/gym99/
+unity_logs/

@@ -1,4 +1,4 @@
-pretrain: exp/clip_gym99/ViT-B/32/gym99/model_best.pt
+pretrain: exp/clip_gym99_set_no_action_2_labels/ViT-B/32/gym99/model_best.pt
 seed: 1024
 data:
     dataset: gym99
@@ -6,12 +6,12 @@ data:
     num_segments: 8
     seg_length: 1
     split: 1
-    batch_size: 16
+    batch_size: 1
     workers: 16
     gpus: 2
-    num_classes: 14
-    image_tmpl: 'img_{:05d}.jpg'
-    val_list: 'lists/gym99/val_set_frames.txt' #
+    num_classes: 15
+    image_tmpl: '{:05d}.png'
+    val_list: 'lists/gym99/val_set_frames_2_video_detection_0.5_second_overlapping.txt' #
     label_list: 'lists/gym99_set_labels.csv'
     index_bias: 1
     input_size: 224
@@ -24,7 +24,7 @@ network:
     emb_dropout: 0.0
     bn_momentum: 0.1
     consensus_type: avg
-    type: clip_gym99_set_inference
+    type: clip_gym99_set_detection_inference
     sim_header: "Transf"   #Transf   meanP  LSTM  Conv_1D  Transf_cls
     joint: False
     describe:
