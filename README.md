@@ -10,8 +10,21 @@ Microsoft Corporation - Apurva Gandhi, Dhruvil Gala, Soundar Srinivasan
 
 Since our entire progress builds on top the existing architecture of [ActionCLIP](https://github.com/sallymmx/actionclip), the training and the inference guidelines for our work remains the same as ActionCLIP (can be found in relevant sections below).
 
-The dataset which we use for our research is the [FineGYM](https://sdolivia.github.io/FineGym/) dataset.
+The dataset which we use for our research is the [FineGYM](https://sdolivia.github.io/FineGym/) dataset. It is an extremely fine-grained dataset of gymnastics which provides coarse-to-fine-grained annotations both temporally and semantically. This allows us to experiment with various degrees of granularity, while still working with the same dataset.
 
+There are overall 4 components required to setup a training/inference pipeline for ActionCLIP - 
+- Config File - For specifying the hyper-parameters as well as the dataset and the corresponding label-map.
+  - Sample config file for FineGYM dataset can be found in the configs folder (Linked [here](https://github.com/abhisheklalwani/ActionCLIP/blob/master/configs/gym99/) for reference).
+- Text file specifying the data and the corresponding labels.
+   - A sample file can be seen [here](https://github.com/abhisheklalwani/ActionCLIP/blob/master/lists/gym99/train_set_frames_1500.txt). Every row in the file contains 3 entries - 
+        - Path to the folder containing all the frames of the video which is represented by the title of the folder. For example, if the video is 30 FPS and 3 second long, there will be 90 images saved in the folder, containing all the frames in the following naming format '00000.png' to 00089.png'.
+        - Number of frames (in that video) // 2
+        - Label for that video (Do keep in mind that FineGym provides varying level of annotations for same video, so there can be different labels for the same video depending on the granularity of the annotations, refer to the label maps below for more details).
+- A csv file specifying the label map
+   - A sample file can be seen [here](https://github.com/abhisheklalwani/ActionCLIP/blob/master/lists/gym99_set_labels.csv).
+- Actual video data in the format of discrete frames saved as images (To be specified in the text file as mentioned above).
+
+Once you have all these components, you can use training/inference instructions given below to train your own ActionCLIP model on your data.
 
 ## Updates
  - 2022.01: Add the trained model download link of [google driver](https://drive.google.com/drive/folders/1qs5SzQIl__qo2x9h0YudpGzHhNnPGqK6?usp=sharing).
