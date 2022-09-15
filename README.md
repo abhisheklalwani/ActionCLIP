@@ -8,11 +8,11 @@ UMass Amherst - Abhishek Lalwani, Prajakti Kapade, Nishtha Nayar, Akhil Ayyanki,
 
 Microsoft Corporation - Apurva Gandhi, Dhruvil Gala, Soundar Srinivasan
 
-Since our entire progress builds on top the existing architecture of [ActionCLIP](https://github.com/sallymmx/actionclip), the training and the inference guidelines for our work remains the same as ActionCLIP (can be found in relevant sections below).
+Since our entire progress builds on top of the existing architecture of [ActionCLIP](https://github.com/sallymmx/actionclip), the training and the inference guidelines for our work remains the same as ActionCLIP (can be found in relevant sections below).
 
 The dataset which we use for our research is the [FineGYM](https://sdolivia.github.io/FineGym/) dataset. It is an extremely fine-grained dataset of gymnastics which provides coarse-to-fine-grained annotations both temporally and semantically. This allows us to experiment with various degrees of granularity, while still working with the same dataset.
 
-There are overall 4 components required to setup a training/inference pipeline for ActionCLIP - 
+There are overall 4 components required to setup a training/inference pipeline for ActionCLIP on FineGYM/any other custom dataset - 
 - Config File - For specifying the hyper-parameters as well as the dataset and the corresponding label-map.
   - Sample config file for FineGYM dataset can be found in the configs folder (Linked [here](https://github.com/abhisheklalwani/ActionCLIP/blob/master/configs/gym99/) for reference).
 - Text file specifying the data and the corresponding labels.
