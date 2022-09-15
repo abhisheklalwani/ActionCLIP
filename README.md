@@ -1,4 +1,17 @@
-# This is an official pytorch implementation of ActionCLIP: A New Paradigm for Video Action Recognition [[arXiv]](https://arxiv.org/abs/2109.08472)
+# Towards Label Efficient Fine-grained Action Recognition
+This repository contains the research and development of a fine-grained action recognition pipeline for sports action recognition.
+This project was developed as a part of 696DS course at University of Massachusetts Amherst, in collaboration with Microsoft Corporation.
+
+The list of collaborators can be found below.
+
+UMass Amherst - Abhishek Lalwani, Prajakti Kapade, Nishtha Nayar, Akhil Ayyanki, Fabien Delattre
+
+Microsoft Corporation - Apurva Gandhi, Dhruvil Gala, Soundar Srinivasan
+
+Since our entire progress builds on top the existing architecture of [ActionCLIP](https://github.com/sallymmx/actionclip), the training and the inference guidelines for our work remains the same as ActionCLIP (can be found in relevant sections below).
+
+The dataset which we use for our research is the [FineGYM](https://sdolivia.github.io/FineGym/) dataset.
+
 
 ## Updates
  - 2022.01: Add the trained model download link of [google driver](https://drive.google.com/drive/folders/1qs5SzQIl__qo2x9h0YudpGzHhNnPGqK6?usp=sharing).
